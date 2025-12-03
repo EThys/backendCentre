@@ -5,8 +5,15 @@ Ce document décrit les APIs disponibles pour gérer les actualités, événemen
 ## Base URL
 
 Toutes les APIs sont accessibles via le préfixe `/api` :
+
+**Développement local :**
 ```
 http://localhost:8000/api
+```
+
+**Production :**
+```
+https://backend.creffpme.org/api
 ```
 
 ## Endpoints disponibles
@@ -303,6 +310,8 @@ DELETE /api/gallery/{id}
 Les APIs sont configurées pour accepter les requêtes depuis :
 - `http://localhost:5173` (Vite dev server)
 - `http://localhost:3000` (Autre serveur de développement)
+- `https://creffpme.org` (Production)
+- `https://www.creffpme.org` (Production)
 - URL définie dans `FRONTEND_URL` (variable d'environnement)
 
 Pour modifier les origines autorisées, éditez le fichier `config/cors.php`.
