@@ -23,6 +23,10 @@ return [
         env('FRONTEND_URL', 'http://localhost:5173'),
         'http://localhost:5173',
         'http://localhost:3000',
+        'https://creffpme.org',
+        'https://www.creffpme.org',
+        'http://creffpme.org',
+        'http://www.creffpme.org',
     ],
 
     'allowed_origins_patterns' => [],
