@@ -9,6 +9,8 @@ use App\Http\Controllers\Api\PublicationController;
 use App\Http\Controllers\Api\GalleryPhotoController;
 use App\Http\Controllers\Api\FinancingRequestController;
 use App\Http\Controllers\Api\PublicationRequestController;
+use App\Http\Controllers\Api\NewsletterSubscriptionController;
+use App\Http\Controllers\Api\TrainingRegistrationController;
 use App\Http\Controllers\Api\AuthController;
 
 // Routes d'authentification
@@ -95,6 +97,37 @@ Route::prefix('publication-requests')->group(function () {
     Route::patch('/{id}', [PublicationRequestController::class, 'update']);
     Route::patch('/{id}/status', [PublicationRequestController::class, 'updateStatus']);
     Route::delete('/{id}', [PublicationRequestController::class, 'destroy']);
+});
+
+// Newsletter routes (public routes)
+Route::prefix('newsletter')->group(function () {
+    Route::post('/subscribe', [NewsletterSubscriptionController::class, 'subscribe']);
+    Route::post('/unsubscribe', [NewsletterSubscriptionController::class, 'unsubscribe']);
+    Route::get('/status', [NewsletterSubscriptionController::class, 'status']);
+});
+
+// Newsletter routes (admin routes - require authentication)
+Route::prefix('newsletter')->middleware('auth:sanctum')->group(function () {
+    Route::get('/subscribers', [NewsletterSubscriptionController::class, 'subscribers']);
+    Route::get('/', [NewsletterSubscriptionController::class, 'index']);
+    Route::get('/{id}', [NewsletterSubscriptionController::class, 'show']);
+    Route::put('/{id}', [NewsletterSubscriptionController::class, 'update']);
+    Route::patch('/{id}', [NewsletterSubscriptionController::class, 'update']);
+    Route::delete('/{id}', [NewsletterSubscriptionController::class, 'destroy']);
+});
+
+// Training Registrations routes (public route for registration)
+Route::prefix('training-registrations')->group(function () {
+    Route::post('/', [TrainingRegistrationController::class, 'store']);
+});
+
+// Training Registrations routes (admin routes - require authentication)
+Route::prefix('training-registrations')->middleware('auth:sanctum')->group(function () {
+    Route::get('/', [TrainingRegistrationController::class, 'index']);
+    Route::get('/{id}', [TrainingRegistrationController::class, 'show']);
+    Route::put('/{id}', [TrainingRegistrationController::class, 'update']);
+    Route::patch('/{id}', [TrainingRegistrationController::class, 'update']);
+    Route::delete('/{id}', [TrainingRegistrationController::class, 'destroy']);
 });
 
 
