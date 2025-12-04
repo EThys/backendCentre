@@ -19,10 +19,10 @@ return new class extends Migration
             $table->string('legal_form')->nullable();
             $table->string('registration_number')->nullable();
             $table->string('tax_id')->nullable();
-            $table->text('address')->nullable();
-            $table->string('city')->nullable();
+            $table->text('address');
+            $table->string('city');
             $table->string('country')->default('RDC');
-            $table->string('phone')->nullable();
+            $table->string('phone');
             $table->string('email');
             $table->string('website')->nullable();
             
@@ -30,7 +30,7 @@ return new class extends Migration
             $table->string('contact_first_name');
             $table->string('contact_last_name');
             $table->string('contact_position')->nullable();
-            $table->string('contact_phone')->nullable();
+            $table->string('contact_phone');
             $table->string('contact_email');
             
             // Informations sur le projet
@@ -38,7 +38,7 @@ return new class extends Migration
             $table->text('project_description');
             $table->enum('project_type', ['startup', 'expansion', 'equipment', 'working-capital', 'other'])->default('other');
             $table->string('sector')->nullable();
-            $table->decimal('requested_amount', 15, 2)->default(0);
+            $table->decimal('requested_amount', 15, 2);
             $table->string('currency')->default('USD');
             $table->integer('project_duration')->nullable(); // en mois
             $table->date('expected_start_date')->nullable();
